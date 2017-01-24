@@ -15,21 +15,17 @@ print "\nInitialize grs80 and bessel ellipsoids...\n"
 grs80 = Ellipsoid(6378137, 298.257222101)
 bessel = Ellipsoid(6377397.155, 299.1528128)
 
-# print "Get geocentric X, Y, Z for lat, lon, h coordinates 58, 17, 30...\n"
+print "Get geocentric X, Y, Z for lat, lon, h coordinates 58, 17, 30...\n"
 grs80_geocentric = grs80.getGeocentric(58, 17, 30)
-# bessel_geocentric = bessel.getGeocentric(58, 17, 30)
+bessel_geocentric = bessel.getGeocentric(58, 17, 30)
 
-# print 'grs80: ', 'X', grs80_geocentric[0], 'Y', grs80_geocentric[1], 'Z', grs80_geocentric[2]
-# print 'bessel: ', 'X', bessel_geocentric[0], 'Y', bessel_geocentric[1], 'Z', bessel_geocentric[2]
+print 'grs80: ', 'X', grs80_geocentric[0], 'Y', grs80_geocentric[1], 'Z', grs80_geocentric[2]
+print 'bessel: ', 'X', bessel_geocentric[0], 'Y', bessel_geocentric[1], 'Z', bessel_geocentric[2]
 
-# print '\nAnd back to lat, lon:\n'
+print '\nAnd back to lat, lon:\n'
 
-# grs80_latlon = grs80.getLatLon(grs80_geocentric)
-# bessel_latlon = bessel.getLatLon(bessel_geocentric)
+grs80_latlon = grs80.getLatLon(grs80_geocentric)
+bessel_latlon = bessel.getLatLon(bessel_geocentric)
 
-# print 'grs80: ', grs80_latlon[0], grs80_latlon[1], grs80_latlon[2]
-# print 'bessel: ', bessel_latlon[0], bessel_latlon[1], bessel_latlon[2]
-
-bessel_latlon_from_grs80 = bessel.getLatLon(grs80_geocentric)
-
-print 'from grs80 geodesic to geocentric, then back to bessel geodesic\n', bessel_latlon_from_grs80[0], bessel_latlon_from_grs80[1], bessel_latlon_from_grs80[2]
+print 'grs80: ', grs80_latlon[0], grs80_latlon[1], grs80_latlon[2]
+print 'bessel: ', bessel_latlon[0], bessel_latlon[1], bessel_latlon[2]
