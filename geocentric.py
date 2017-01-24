@@ -10,6 +10,7 @@ From a given lat, lon pair (and height above the ellipsoid), calculate the geoce
 Formulas: http://www.lantmateriet.se/globalassets/kartor-och-geografisk-information/gps-och-matning/geodesi/transformationer/xyz_geodetiska_koord_och_exempel.pdf
 '''
 from ellipsoid import *
+from translation import *
 
 print "\nInitialize grs80 and bessel ellipsoids...\n"
 grs80 = Ellipsoid(6378137, 298.257222101)
@@ -28,4 +29,19 @@ grs80_latlon = grs80.getLatLon(grs80_geocentric)
 bessel_latlon = bessel.getLatLon(bessel_geocentric)
 
 print 'grs80: ', grs80_latlon[0], grs80_latlon[1], grs80_latlon[2]
-print 'bessel: ', bessel_latlon[0], bessel_latlon[1], bessel_latlon[2]
+print 'bessel: ', bessel_latlon[0], bessel_latlon[1], bessel_latlon[2], '\n'
+
+
+sweref93ToRR92 = Translate(1)
+rr92ToSweref93 = Translate(-1)
+
+swe93 = [3240036.3696, 990578.5272, 5385763.1648]
+
+rr92 = sweref93ToRR92.translate(swe93)
+swe93back = rr92ToSweref93.translate(rr92)
+
+print swe93, "\n"
+
+print rr92, "\n"
+
+print swe93back, "\n"
