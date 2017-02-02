@@ -11,6 +11,9 @@ class Ellipsoid:
 		self.a = a
 		self.f = 1/f
 		self.eSq = self.geteSquared(self.f)
+		self.e = sqrt(self.eSq)
+		self.n = self.getN(self.f)
+		self.aHat = self.getAHat(self.a, self.n)
 
 	def getX(self, lat, lon, h):
 		return (self.getNprime(lat) + h) * cos(radians(lat)) * cos(radians(lon))
@@ -27,8 +30,14 @@ class Ellipsoid:
 	def getNprime(self, lat):
 		return self.a / sqrt(1 - self.eSq * pow(sin(radians(lat)), 2))
 
+	def getN(self, f):
+		return f / (2 - f)
+
 	def geteSquared(self, f):
 		return f * (2 - f)
+
+	def getAHat(self, a, n):
+		return a / (1 + n) * (1 + ((1.0 / 4.0) * n ** 2 ) + ((1.0 / 64.0) * n ** 4))
 
 	def getLatLon(self, geocentric):
 		lon = degrees(atan(geocentric[1] / geocentric[0]))
