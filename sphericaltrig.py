@@ -1,11 +1,6 @@
 from math import *
 
-departure = [59.3, 18.05]
-destination = [47.6, -112.3]
-
-earthRadius = 6371.0 #km
-
-def greatCircleDistance(dep, dest): #[lat, lon]
+def greatCircleDistance(dep, dest, earthRadius = 6371.0): #[lat, lon], radius in km
 	dep = map(radians, dep)
 	dest = map(radians, dest)
 	ld = abs(dep[1] - dest[1]) #lonigtude differential
@@ -16,4 +11,8 @@ def greatCircleDistance(dep, dest): #[lat, lon]
 def arcLength(r, theta):
 	return r * theta
 
-result = greatCircleDistance(departure, destination)
+stockholm = [59.3, 18.05]
+seattle = [47.6, -112.3]
+
+distance = greatCircleDistance(stockholm, seattle)
+print distance
